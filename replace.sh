@@ -1,27 +1,25 @@
 #!/bin/bash
 #
-# v July 2000
 # save file as replace.sh
 # cp replace.sh /usr/local/bin; chmod +x /usr/local/bin/replace.sh
 #######################################################################
 
 case $# in
   3)
-  in1="$1"
-  out1="$2";
-  cp $3 /tmp/$3
-  in=$in1 out=$out1 perl -pi -e 's/\Q$ENV{"in"}/$ENV{"out"}/g' $3 
-    # cat $3| sed "s/$1/$2/g" | sed "s/  / /g" > .temp.newname
-   #  echo -e "The string has been replaced, if you have mucked up"
-    # echo -e "you will find the old file in /tmp/$3 \n"
-    # mv $3 /tmp/$3
-   #  mv .temp.newname $3
+     RAND=$$;
+     in1="$1"
+     out1="$2";
+     cp $3 /tmp/$3.$RAND
+     in=$in1 out=$out1 perl -pi -e 's/\Q$ENV{"in"}/$ENV{"out"}/g' $3 
+     echo -e "The string has been replaced, if you have mucked up"
+     echo -e "you will find the old file in /tmp/$3.$RAND \n"
      ;;
   *)
-     echo "Usage: RESTORE.SH STRING_TARGET STRING_REPLACE FILENAME"
+     echo "Usage: "
+     echo "$0 STRING_TARGET STRING_REPLACE FILENAME"
      echo
-     echo "Example: string-rename \"_\" \"\ \" my_file"
-     echo "  will rename \"my_file\" to \"my file\""
+     echo "Example:  \"_\" \"\-\" myfile"
+     echo "will search the content of myfile and replace any patterns of _ with a -"
      exit 1
 esac
 exit 0
