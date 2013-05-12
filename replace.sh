@@ -10,7 +10,7 @@ case $# in
   in1="$1"
   out1="$2";
   cp $3 /tmp/$3
-  in=$in1 out=$out1 perl -pi -e 's/\Q$ENV{"in"}/$ENV{"out"}/g' $$3 
+  in=$in1 out=$out1 perl -pi -e 's/\Q$ENV{"in"}/$ENV{"out"}/g' $3 
     # cat $3| sed "s/$1/$2/g" | sed "s/  / /g" > .temp.newname
    #  echo -e "The string has been replaced, if you have mucked up"
     # echo -e "you will find the old file in /tmp/$3 \n"
